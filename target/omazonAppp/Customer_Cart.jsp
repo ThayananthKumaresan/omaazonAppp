@@ -2,6 +2,7 @@
 <%@ page import="com.example.omazonwebappp.*" %>
 <%@ page import="static com.example.omazonwebappp.DAOObjects.cartDAO" %>
 <%@ page import="static com.example.omazonwebappp.DAOObjects.*" %>
+<%if(sessionCustomer.getCustomerID()==0){response.sendRedirect("index.jsp");}%>
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -1,10 +1,10 @@
 package servlet;
 
-import com.example.omazonwebappp.*;
 
+import com.example.omazonwebappp.*;
 import javax.servlet.*;
-import javax.servlet.annotation.*;
 import javax.servlet.http.*;
+import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
@@ -20,9 +20,9 @@ public class CheckoutServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-         PrintWriter out = response.getWriter();
+        PrintWriter out = response.getWriter();
 
-         // Get all the values
+        // Get all the values
         String paymentPassword = request.getParameter("paymentPassword");
         double totalCheckoutAmount = Double.parseDouble(request.getParameter("totalCheckoutAmount"));
 

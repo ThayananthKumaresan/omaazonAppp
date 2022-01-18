@@ -1,13 +1,12 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="static com.example.omazonwebappp.DAOObjects.sessionSeller" %>
-<%@ page import="com.example.omazonwebappp.Transaction" %>
 <%@ page import="com.example.omazonwebappp.Notification" %>
 <%@ page import="static com.example.omazonwebappp.DAOObjects.notificationDAO" %>
 <%@ page import="static com.example.omazonwebappp.DAOObjects.*" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title> MANAGE NOTIFICATION</title>
+    <title> Manage Notification</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">

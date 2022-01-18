@@ -1,7 +1,5 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.omazonwebappp.*" %>
-<%@ page import="static com.example.omazonwebappp.DAOObjects.df" %>
-<%@ page import="static com.example.omazonwebappp.DAOObjects.sessionCustomer" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
@@ -22,7 +20,6 @@
                 if (listOfFavoritesOfThisCustomer.get(i).getFavoritesProductID() == formattedProductIDForWishlist) {
                     existProductInFavoritesFlag = true;
                 }
-
             }
         }
 
@@ -56,7 +53,7 @@
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
     <link href="css/responsive.css" rel="stylesheet">
-
+    <link rel="shortcut icon" href="images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
@@ -69,12 +66,6 @@
 
 <section>
     <div class="container">
-        <div class="breadcrumbs">
-            <ol class="breadcrumb">
-                <li><a href="#">Home</a></li>
-                <li class="active">Wishlist</li>
-            </ol>
-        </div>
         <div class="row">
             <div class="col-sm-3">
                 <div class="left-sidebar">
@@ -128,7 +119,7 @@
                             <div class="single-products">
                                 <div class="productinfo text-center">
                                     <img src="pics/<%=productDAO.getProduct(favorite.getFavoritesProductID()).getProductFilePath()%>" alt=""  />
-                                    <h2>RM <%=df.format(productDAO.getProduct(favorite.getFavoritesProductID()).getProductPrice())%></h2>
+                                    <h2>RM <%=productDAO.getProduct(favorite.getFavoritesProductID()).getProductPrice()%></h2>
                                     <p><%=productDAO.getProduct(favorite.getFavoritesProductID()).getProductName()%></p>
                                 </div>
 

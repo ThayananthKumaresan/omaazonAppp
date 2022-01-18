@@ -82,7 +82,7 @@ public class ProductDaoImp implements ProductDao {
             rs = stmnt.executeQuery(); // Executing the sql query
 
             while (rs.next()) {
-                    sellerUsername =rs.getString("userName");
+                sellerUsername =rs.getString("userName");
             }
 
 

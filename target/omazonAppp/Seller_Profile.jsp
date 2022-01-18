@@ -4,12 +4,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Beauticians</title>
+    <title>Manage Profile</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Profile</title>
+    <title>Manage Profile</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="admin.css">
@@ -65,7 +65,7 @@
             <div class="col-md-5 border-right">
                 <div class="p-3 py-5">
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h4 class="text-left">Profile Settings</h4>
+                        <h4 class="text-left">MANAGE PROFILE</h4>
                     </div>
                     <form action="ProfileServlet" method="post" >
                         <input name="userRole" type="hidden" value="seller">

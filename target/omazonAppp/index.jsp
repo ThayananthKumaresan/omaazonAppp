@@ -153,8 +153,10 @@
                             </div>
                             <div class="choose">
                                 <ul class="nav nav-pills nav-justified">
+                                    <%if(sessionCustomer.getCustomerID()!=0){%>
                                     <li><a href="Customer_Wishlist.jsp?productIDForWishlist=<%=product.getProductID()%>&mode=add"><i class="fa fa-plus-square"></i>Add to Wishlist</a></li>
                                     <li><a href="Customer_Product_Display.jsp?productIDToDisplay=<%=product.getProductID()%>"><i class="fa fa-plus-square"></i>More Details</a></li>
+                                    <%}%>
                                 </ul>
                             </div>
                         </div>

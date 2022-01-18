@@ -1,8 +1,6 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.omazonwebappp.Product" %>
-<%@ page import="com.example.omazonwebappp.DAOObjects.*" %>
 <%@ page import="static com.example.omazonwebappp.DAOObjects.productDAO" %>
-<%@ page import="static com.example.omazonwebappp.DAOObjects.*" %>
 
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -21,7 +19,7 @@
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
     <link href="css/responsive.css" rel="stylesheet">
-
+    <link rel="shortcut icon" href="images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
@@ -35,12 +33,6 @@
 
 <section>
     <div class="container">
-        <div class="breadcrumbs">
-            <ol class="breadcrumb">
-                <li><a href="#">Home</a></li>
-                <li class="active">Search Results</li>
-            </ol>
-        </div>
         <div class="row">
             <div class="col-sm-3">
                 <div class="left-sidebar">
@@ -59,7 +51,7 @@
                         %>
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h4 class="panel-title"><a href="Customer_Shop.jsp?category=<%=i%>"><%=category[i]%></a></h4>
+                                <h4 class="panel-title"><a href="Customer_Shop.jsp?category=<%=category[i]%>"><%=category[i]%></a></h4>
                             </div>
                         </div>
 
@@ -93,8 +85,8 @@
 
                         if(searchResult.size()!=0)
                         {
-                        for (int i = 0; i < searchResult.size(); i++){
-                            Product product = searchResult.get(i);
+                            for (int i = 0; i < searchResult.size(); i++){
+                                Product product = searchResult.get(i);
 
                     %>
 
@@ -103,7 +95,7 @@
                             <div class="single-products">
                                 <div class="productinfo text-center">
                                     <img src="pics/<%=product.getProductFilePath()%>" alt=""  />
-                                    <h2>RM <%=df.format(product.getProductPrice())%></h2>
+                                    <h2>RM <%=product.getProductPrice()%></h2>
                                     <p><%=product.getProductName()%></p>
                                 </div>
 
@@ -157,8 +149,8 @@
 
                         if(searchResult.size()!=0)
                         {
-                        for (int i = 0; i < searchResult.size(); i++){
-                            Product product = searchResult.get(i);
+                            for (int i = 0; i < searchResult.size(); i++){
+                                Product product = searchResult.get(i);
 
                     %>
 
@@ -167,7 +159,7 @@
                             <div class="single-products">
                                 <div class="productinfo text-center">
                                     <img src="pics/<%=product.getProductFilePath()%>" alt=""  />
-                                    <h2>RM <%=df.format(product.getProductPrice())%></h2>
+                                    <h2>RM <%=product.getProductPrice()%></h2>
                                     <p><%=product.getProductName()%></p>
                                 </div>
 
@@ -185,7 +177,7 @@
                         searchResult.clear();
 
                     }
-                        else{
+                    else{
 
                     %>
 
@@ -199,8 +191,10 @@
                         </div>
                     </div>
 
-                       <%
+                    <%
                         }
+
+
                     %>
 
 

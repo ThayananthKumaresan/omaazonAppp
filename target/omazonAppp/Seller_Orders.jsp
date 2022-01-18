@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Orders</title>
+    <title>Manage Orders</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -35,7 +35,7 @@
             <h1><i class="fas fa-shopping-cart"></i></h1>
         </div>
         <div class="box">
-            <h1>ORDER</h1>
+            <h1>MANAGE ORDERS</h1>
         </div>
     </div>
     <table id="table" class=" table table-responsive table-hover table-sm table-bordered">

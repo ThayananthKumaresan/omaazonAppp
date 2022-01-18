@@ -1,6 +1,11 @@
 package com.example.omazonwebappp;
 
-import java.sql.*;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import static com.example.omazonwebappp.DAOObjects.*;
 
@@ -27,21 +32,15 @@ public class CustomerDaoImp implements CustomerDao{
      */
     @Override
     public Customer getCustomer(int customerID) {
-
         ResultSet rs = null;
         Connection conn;
         PreparedStatement stmnt;
-
         Customer customer = new Customer();
-
         try {
-
             conn = MySQLJDBCUtil.getConnection();
             stmnt = conn.prepareStatement(FIND_BY_ID);
-
             stmnt.setInt(1, customerID);
             rs = stmnt.executeQuery(); // Executing the sql query
-
             while (rs.next()) {
                 customer.setCustomerID(rs.getInt("customerID"));
                 customer.setUserName(rs.getString("userName"));
@@ -55,8 +54,6 @@ public class CustomerDaoImp implements CustomerDao{
                 customer.setProfileImage(rs.getString("profileImage"));
                 customer.setRegisteredAsSeller(rs.getBoolean("registeredAsSeller"));
             }
-
-
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         } finally {
@@ -66,118 +63,107 @@ public class CustomerDaoImp implements CustomerDao{
                 System.out.println(e.getMessage());
             }
         }
-
         customer.setUserWallet(walletDAO.getCustomerWallet(customer.getCustomerID()));
-
         return customer;
     }
 
+    /**
+     * This method update customer password
+     * @param cust
+     */
     @Override
     public void updateCustomerPassword(Customer cust) {
-
         PreparedStatement stmnt = null;
         Connection conn = null;
-
         try {
             conn = MySQLJDBCUtil.getConnection();
             stmnt = conn.prepareStatement(UPDATE_PASSWORD);
             stmnt.setString(1, cust.getPassword());
             stmnt.setString(2, cust.getPaymentPassword());
             stmnt.setInt(3, cust.getCustomerID());
-
             stmnt.executeUpdate();
-
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         } finally {
-
             try {
                 if (stmnt != null) stmnt.close();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-
             try {
                 if (conn != null) conn.close();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-
         }
-
     }
 
+    /**
+     * This method update customer profile image
+     * @param cust
+     */
     @Override
     public void updateCustomerProfileImage(Customer cust) {
-
         PreparedStatement stmnt = null;
         Connection conn = null;
-
         try {
             conn = MySQLJDBCUtil.getConnection();
             stmnt = conn.prepareStatement(UPDATE_PROFILE_IMAGE);
             stmnt.setString(1, cust.getProfileImage());
             stmnt.setInt(2, cust.getCustomerID());
-
             stmnt.executeUpdate();
-
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         } finally {
-
             try {
                 if (stmnt != null) stmnt.close();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-
             try {
                 if (conn != null) conn.close();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-
         }
-
     }
 
+    /**
+     * This method update customer to become seller
+     * @param cust
+     */
     @Override
     public void updateCustomerAsSeller(Customer cust) {
-
         PreparedStatement stmnt = null;
         Connection conn = null;
-
         try {
             conn = MySQLJDBCUtil.getConnection();
             stmnt = conn.prepareStatement(UPDATE_AS_SELLER);
             stmnt.setBoolean(1, true);
             stmnt.setInt(2, cust.getCustomerID());
-
             stmnt.executeUpdate();
-
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         } finally {
-
             try {
                 if (stmnt != null) stmnt.close();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-
             try {
                 if (conn != null) conn.close();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-
         }
-
     }
 
+    /**
+     * This method update customer profile
+     * @param cust
+     */
     @Override
     public void updateCustomerProfile(Customer cust) {
-
         PreparedStatement stmnt = null;
         Connection conn = null;
         try {
@@ -190,46 +176,39 @@ public class CustomerDaoImp implements CustomerDao{
             stmnt.setString(5, cust.getAddress());
             stmnt.setString(6, cust.getContactNum());
             stmnt.setInt(7, cust.getCustomerID());
-
             stmnt.executeUpdate();
-
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         } finally {
-
             try {
                 if (stmnt != null) stmnt.close();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-
             try {
                 if (conn != null) conn.close();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-
         }
-
     }
 
+    /**
+     * This method delete customer account
+     * @param cust
+     */
     @Override
     public void deleteCustomer(Customer cust) {
-
         walletDAO.deleteWallet(cust.getUserWallet());
-
         PreparedStatement stmnt = null;
         Connection conn = null;
-
         try {
             conn = MySQLJDBCUtil.getConnection();
             stmnt = conn.prepareStatement(DELETE);
             stmnt.setBoolean(1, true);
             stmnt.setInt(2, cust.getCustomerID());
             System.out.println(stmnt);
-
             stmnt.executeUpdate();
-
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         } finally {
@@ -244,26 +223,24 @@ public class CustomerDaoImp implements CustomerDao{
                 System.out.println(e.getMessage());
             }
         }
-
         if(cust.getRegisteredAsSeller()){
             sellerDAO.deleteSeller(cust.getCustomerID());
         }
         sessionCustomer.setCustomerID(0);
     }
 
+    /**
+     * This method add new customer
+     * @param cust
+     */
     @Override
     public void registerCustomer(Customer cust) {
-
         ResultSet rs = null;
         Connection conn ;
         PreparedStatement stmnt;
-
         try {
-
             conn = MySQLJDBCUtil.getConnection();
             stmnt = conn.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
-
-
             stmnt.setString(1, cust.getUserName());
             stmnt.setString(2, cust.getEmail());
             stmnt.setString(3, cust.getPassword());
@@ -275,15 +252,11 @@ public class CustomerDaoImp implements CustomerDao{
             stmnt.setBoolean(9, cust.getRegisteredAsSeller());
             stmnt.setString(10, cust.getProfileImage());
             stmnt.setBoolean(11,false);
-
             stmnt.executeUpdate(); // Executing the sql query
             rs = stmnt.getGeneratedKeys();
-
             if (rs.next()) {
                 cust.setCustomerID(rs.getInt(1)); //Setting the customer ID
             }
-
-
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         } finally {
@@ -293,31 +266,28 @@ public class CustomerDaoImp implements CustomerDao{
                 System.out.println(e.getMessage());
             }
         }
-
-
         walletDAO.createWallet(cust.getCustomerID());
-
     }
 
+    /**
+     * This method perform login process for customer
+     * @param cust
+     * @return validation of login
+     */
     @Override
     public boolean loginCustomer(Customer cust  ) {
-
         boolean loginSuccessFlag = false;
-
         ResultSet rs = null;
         PreparedStatement stmnt = null;
         Connection conn = null;
-
         try {
             conn = MySQLJDBCUtil.getConnection();
             stmnt = conn.prepareStatement(FIND_BY_EMAIL_AND_PASSWORD);
             stmnt.setString(1, cust.getEmail());
             stmnt.setString(2, cust.getPassword());
             stmnt.setBoolean(3, false);
-
             rs = stmnt.executeQuery();
             if (rs.next()) {
-
                 sessionCustomer.setCustomerID(rs.getInt("customerID"));
                 sessionCustomer.setUserName(rs.getString("userName"));
                 sessionCustomer.setEmail(rs.getString("email"));
@@ -329,10 +299,8 @@ public class CustomerDaoImp implements CustomerDao{
                 sessionCustomer.setContactNum(rs.getString("contactNum"));
                 sessionCustomer.setProfileImage(rs.getString("profileImage"));
                 sessionCustomer.setRegisteredAsSeller(rs.getBoolean("registeredAsSeller"));
-
                 loginSuccessFlag = true;
             }
-
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         } finally {
@@ -341,41 +309,40 @@ public class CustomerDaoImp implements CustomerDao{
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
-
         }
-
         sessionCustomer.setUserWallet(walletDAO.getCustomerWallet(sessionCustomer.getCustomerID()));
-
         return loginSuccessFlag;
-
     }
 
+    /**
+     * This method check customer payment password
+     * @param paymentPassword
+     * @return validation of password
+     */
     @Override
     public boolean checkPaymentPassword(String paymentPassword,int customerID) {
         return getCustomer(customerID).getPaymentPassword().equals(paymentPassword);
     }
 
+    /**
+     * This method read customer username
+     * @param customerID
+     * @return customerUsername
+     */
     @Override
     public String getCustomerUsername(int customerID) {
         String customerUsername = "";
-
         ResultSet rs = null;
         Connection conn;
         PreparedStatement stmnt;
-
         try {
-
             conn = MySQLJDBCUtil.getConnection();
             stmnt = conn.prepareStatement(FIND_CUSTOMER_USERNAME);
-
             stmnt.setInt(1, customerID);
             rs = stmnt.executeQuery(); // Executing the sql query
-
             while (rs.next()) {
                 customerUsername = rs.getString("userName");
             }
-
-
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         } finally {
@@ -385,33 +352,28 @@ public class CustomerDaoImp implements CustomerDao{
                 System.out.println(e.getMessage());
             }
         }
-
-
-
         return customerUsername;
     }
 
+    /**
+     * This method read customer name
+     * @param customerID
+     * @return customerFullName
+     */
     @Override
     public String getCustomerFullName(int customerID) {
         String customerFullName = "";
-
         ResultSet rs = null;
         Connection conn;
         PreparedStatement stmnt;
-
         try {
-
             conn = MySQLJDBCUtil.getConnection();
             stmnt = conn.prepareStatement(FIND_CUSTOMER_FULL_NAME);
-
             stmnt.setInt(1, customerID);
             rs = stmnt.executeQuery(); // Executing the sql query
-
             while (rs.next()) {
                 customerFullName = rs.getString("firstName")+" "+rs.getString("lastName") ;
             }
-
-
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         } finally {
@@ -421,24 +383,25 @@ public class CustomerDaoImp implements CustomerDao{
                 System.out.println(e.getMessage());
             }
         }
+        return customerFullName;
+    }
 
-
-
-        return customerFullName;    }
-
+    /**
+     * This method check existing email
+     * @param email
+     * @return customerID
+     */
     @Override
     public int checkExistingEmail(String email) {
         ResultSet rs = null;
         PreparedStatement stmnt = null;
         Connection conn = null;
         int customerID = -1;
-
         try {
             conn = MySQLJDBCUtil.getConnection();
             stmnt = conn.prepareStatement(FIND_CUSTOMER_BY_EMAIL);
             stmnt.setString(1, email);
             stmnt.setBoolean(2, false);
-
             rs = stmnt.executeQuery();
             if(rs.next())
                 customerID = rs.getInt("customerID");
@@ -453,10 +416,14 @@ public class CustomerDaoImp implements CustomerDao{
                 System.out.println(e.getMessage());
             }
         }
-
         return customerID;
     }
 
+    /**
+     * This method check existing username
+     * @param username
+     * @return customerID
+     */
     public int checkExistingUsername(String username) {
         ResultSet rs = null;
         PreparedStatement stmnt = null;
@@ -483,8 +450,6 @@ public class CustomerDaoImp implements CustomerDao{
                 System.out.println(e.getMessage());
             }
         }
-
         return customerID;
     }
-
 }

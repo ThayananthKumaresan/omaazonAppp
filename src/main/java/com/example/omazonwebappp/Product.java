@@ -2,7 +2,6 @@ package com.example.omazonwebappp;
 
 public class Product {
 
-
     private int productID;
     private String productName;
     private String productDescription;
@@ -13,17 +12,37 @@ public class Product {
     private int productSellerID;
     private String productFilePath;
 
-    public Product() {
-    }
+    /**
+     * Empty Constructor
+     */
+    public Product() {}
 
+    /**
+     * Overloaded constructor with 4 parameter
+     * @param productID
+     * @param productName
+     * @param productDescription
+     * @param productPrice
+     */
     public Product(int productID,String productName, String productDescription, double productPrice) {
         this.productID = productID;
         this.productName = productName;
         this.productDescription = productDescription;
         this.productPrice = productPrice;
-
     }
 
+    /**
+     * Overloaded constructor with 9 parameter
+     * @param productSellerID
+     * @param productID
+     * @param productName
+     * @param productDescription
+     * @param productCategory
+     * @param productPrice
+     * @param productStockCount
+     * @param productSalesCount
+     * @param productFilePath
+     */
     public Product(int productSellerID, int productID,String productName, String productDescription, String productCategory ,double productPrice, int productStockCount, int productSalesCount , String productFilePath) {
         this.productID = productID;
         this.productName = productName;
@@ -34,77 +53,66 @@ public class Product {
         this.productCategory = productCategory;
         this.productSellerID = productSellerID;
         this.productFilePath = productFilePath;
-
     }
 
+    /**
+     * Accessor method for all attribute
+     */
     public int getProductID() {
         return productID;
     }
-
-    public void setProductID(int productID) {
-        this.productID = productID;
-    }
-
     public String getProductName() {
         return productName;
     }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
     public String getProductDescription() {
         return productDescription;
     }
-
-    public void setProductDescription(String productDescription) {
-        this.productDescription = productDescription;
-    }
-
     public String getProductCategory() {
         return productCategory;
     }
-
-    public void setProductCategory(String productCategory) {
-        this.productCategory = productCategory;
-    }
-
     public double getProductPrice() {
         return productPrice;
     }
-
-    public void setProductPrice(double productPrice) {
-        this.productPrice = productPrice;
-    }
-
     public int getProductStockCount() {
         return productStockCount;
     }
-
-    public void setProductStockCount(int productStockCount) {
-        this.productStockCount = productStockCount;
-    }
-
     public int getProductSalesCount() {
         return productSalesCount;
     }
-
-    public void setProductSalesCount(int productSalesCount) {
-        this.productSalesCount = productSalesCount;
-    }
-
     public int getProductSellerID() {
         return productSellerID;
     }
-
-    public void setProductSellerID(int productSellerID) {
-        this.productSellerID = productSellerID;
-    }
-
     public String getProductFilePath() {
         return productFilePath;
     }
 
+    /**
+     * Mutator method for all attribute
+     */
+    public void setProductID(int productID) {
+        this.productID = productID;
+    }
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+    public void setProductDescription(String productDescription) {
+        this.productDescription = productDescription;
+    }
+    public void setProductCategory(String productCategory) {
+        this.productCategory = productCategory;
+    }
+    public void setProductPrice(double productPrice) {
+        this.productPrice = productPrice;
+    }
+    public void setProductStockCount(int productStockCount) {
+        this.productStockCount = productStockCount;
+    }
+    public void setProductSalesCount(int productSalesCount) {
+        this.productSalesCount = productSalesCount;
+    }
+    public void setProductSellerID(int productSellerID) {
+        this.productSellerID = productSellerID;
+    }
     public void setProductFilePath(String productFilePath) {
         this.productFilePath = productFilePath;
     }
