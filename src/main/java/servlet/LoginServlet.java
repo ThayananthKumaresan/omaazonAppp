@@ -47,8 +47,8 @@ public class LoginServlet extends HttpServlet {
 
             Seller loginSeller = new Seller(email, password);
 
-            System.out.println("email "+email);
-            System.out.println("password "+password);
+
+
 
             if( sellerDAO.loginSeller(loginSeller) ){
                 HttpSession session = request.getSession();

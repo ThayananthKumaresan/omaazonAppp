@@ -3,6 +3,7 @@
 <%@ page import="static com.example.omazonwebappp.DAOObjects.feedbackDAO" %>
 <%@ page import="static com.example.omazonwebappp.DAOObjects.*" %>
 <%@ page import="java.text.DecimalFormat" %>
+<%if(sessionCustomer.getCustomerID()==0){response.sendRedirect("index.jsp");}%>
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -86,7 +86,7 @@ public class ProductServlet extends HttpServlet {
 
                 part.getInputStream().read(b);
                 String path = request.getRealPath("/") + "pics" + File.separator + imageName;
-                System.out.println("path " + path);
+
 
                 FileOutputStream fos = new FileOutputStream(path);
                 fos.write(b);

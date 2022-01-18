@@ -53,9 +53,7 @@ public class WalletDaoImp implements WalletDao{
     public void topUpWalletBalance(Wallet customerWallet ,double topUpAmount) {
         PreparedStatement stmnt = null;
         Connection conn = null;
-        System.out.println("customerWallet.getWalletID()"+customerWallet.getWalletID() );
-        System.out.println("topUpAmount"+topUpAmount );
-        System.out.println("customerWallet.getWalletBalance()"+customerWallet.getWalletBalance() );
+
         try {
             conn = MySQLJDBCUtil.getConnection();
             stmnt = conn.prepareStatement(UPDATE);

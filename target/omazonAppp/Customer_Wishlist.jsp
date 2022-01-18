@@ -1,28 +1,35 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.omazonwebappp.*" %>
+<%@ page import="static com.example.omazonwebappp.DAOObjects.productDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%if(sessionCustomer.getCustomerID()==0){response.sendRedirect("index.jsp");}%>
 
 <%
+    // Get product ID to add on wishlist and mode . Mode can be add or delete
     request.setAttribute("productIDForWishlist",request.getParameter("productIDForWishlist"));
     request.setAttribute("mode",request.getParameter("mode"));
 
     String productIDForWishlist = (String) request.getAttribute("productIDForWishlist");
     String mode = (String) request.getAttribute("mode");
     FavoritesDao favoriteDAO = new FavoritesDaoImp();
-    boolean existProductInFavoritesFlag = false;
+    boolean existProductInFavoritesFlag = false; // Flag to store existing of products
 
+   // If mode is to add
     if(productIDForWishlist!=null &&  mode.equals("add")){
-        int formattedProductIDForWishlist = Integer.parseInt(productIDForWishlist);
+        int formattedProductIDForWishlist = Integer.parseInt(productIDForWishlist); // format the product id to int
+        // get list of favorites of this customer
         ArrayList<Favorites> listOfFavoritesOfThisCustomer=  favoriteDAO.getListOfFavorites(sessionCustomer.getCustomerID());
 
+        // if not null
         if( listOfFavoritesOfThisCustomer != null) {
             for (int i = 0; i < listOfFavoritesOfThisCustomer.size(); i++) {
+                // then check of the same product exist
                 if (listOfFavoritesOfThisCustomer.get(i).getFavoritesProductID() == formattedProductIDForWishlist) {
-                    existProductInFavoritesFlag = true;
+                    existProductInFavoritesFlag = true; // then set the flag to true
                 }
             }
         }
-
+        // if product not exist , then only add to favorites
         if(!existProductInFavoritesFlag ) {
             Favorites addToFavorites = new Favorites(Integer.parseInt(productIDForWishlist), sessionCustomer.getCustomerID());
             favoriteDAO.addFavorites(addToFavorites);
@@ -30,7 +37,7 @@
         }
     }
 
-
+    // If mode is to delete , then delete the favorite
     if(productIDForWishlist!=null &&  mode.equals("delete")){
         int formattedProductIDForWishlist = Integer.parseInt(productIDForWishlist);
         favoriteDAO.deleteFavorites(formattedProductIDForWishlist);
@@ -66,6 +73,12 @@
 
 <section>
     <div class="container">
+        <div class="breadcrumbs">
+            <ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li class="active">Wishlist</li>
+            </ol>
+        </div>
         <div class="row">
             <div class="col-sm-3">
                 <div class="left-sidebar">
@@ -103,11 +116,11 @@
                 <div class="features_items"><!--features_items-->
                     <%
 
-                        ProductDao productDAO = new ProductDaoImp();
+                        // Get list of favorites of this customer
                         ArrayList<Favorites> listOfFavorites = favoriteDAO.getListOfFavorites(sessionCustomer.getCustomerID());
 
+                        // If not null , then display
                         if (listOfFavorites != null) {
-                            System.out.println("listOfFavorites.size() : "+listOfFavorites.size());
 
                             for (int i = 0; i < listOfFavorites.size(); i++) {
 
@@ -137,6 +150,7 @@
                         }
                     } else{
                     %>
+                    // else which means there is no products in wishlist then show a message
                     <img href="shop.jsp" src="pics/emptyWishlist.png" alt="">
 
                     <%

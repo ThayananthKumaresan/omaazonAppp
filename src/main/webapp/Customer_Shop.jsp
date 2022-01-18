@@ -3,6 +3,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="static com.example.omazonwebappp.DAOObjects.productDAO" %>
 <%@ page import="static com.example.omazonwebappp.DAOObjects.*" %>
+<%if(sessionCustomer.getCustomerID()==0){response.sendRedirect("index.jsp");}%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -72,21 +73,14 @@
 				<div class="features_items"><!--features_items-->
 
 					<%
-
 						if(request.getParameter("category") == null){
 					%>
 					<h2 class="title text-center"> All Products </h2>
 
 					<%
 						ArrayList<Product> listOfAllProducts = productDAO.getListOfAllProduct();
-
 						for (int i = 0; i < listOfAllProducts.size(); i++) {
-
-							if(!sellerDAO.getSeller(listOfAllProducts.get(i).getProductSellerID()).getEmail().equals(sessionCustomer.getEmail()))
-							{
-								Product product = listOfAllProducts.get(i);
-
-
+							Product product = listOfAllProducts.get(i);
 					%>
 
 					<div class="col-sm-4" id="<%=product.getProductID()%>">
@@ -107,12 +101,10 @@
 							</div>
 						</div>
 					</div>
-					<%}
+					<%
 					}
 					}
 					else{
-
-
 					%>
 					<h2 class="title text-center"> Products under <%=category[Integer.parseInt(request.getParameter("category"))]%></h2>
 					<%
@@ -148,7 +140,6 @@
 					<%
 						}
 					}else{
-
 					%>
 
 					<div class="col-sm-4" >
@@ -162,11 +153,8 @@
 					</div>
 
 					<%
-
 							}
-
 						}
-
 					%>
 
 				</div><!--features_items-->
@@ -176,8 +164,6 @@
 </section>
 
 <%@ include file="footer.jsp"  %>
-
-
 
 <script src="js/jquery.js"></script>
 <script src="js/price-range.js"></script>

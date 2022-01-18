@@ -2,6 +2,7 @@
 <%@ page import="static com.example.omazonwebappp.DAOObjects.customerDAO" %>
 <%@ page import="static com.example.omazonwebappp.DAOObjects.df" %>
 
+<%if(sessionCustomer.getCustomerID()==0){response.sendRedirect("index.jsp");}%>
 
 <%--
   Created by IntelliJ IDEA.
@@ -202,14 +203,14 @@
 
                     </form>
                     <%
-                        if(customer.getRegisteredAsSeller()){
+                        if(customer.getRegisteredAsSeller()){ // if customer is registered as seller then show seller login button
                     %>
 
                     <button onclick="window.location.href='Seller_Login.jsp'" type="button" class="btn btn-default">
                         <i class="fa fa-user"></i> Seller Login
                     </button>
 
-                    <%}else
+                    <%}else //else show register seller button
                     {
                     %>
                     <button class="btn btn-dark" type="button" id="popup" data-toggle="modal"  data-target="#registerAsSellerModal">Register As Seller</button>
@@ -570,17 +571,9 @@
                         }).then(function() {
                             window.location.replace('Customer_Profile.jsp');
                         });
-                    }//else if (data.trim() === "usedEmailFlag") {
-                    //     swal('Similar email exist ! ', 'Please enter new email address !', 'error');
-                    // } else if (data.trim() === "usedUsernameFlag") {
-                    //     swal('Similar username exist ! ', 'Please enter new username !', 'error');
-                    // }
-
-
+                    }
                 }
             })
-
-
         });
 
         $('#savePasswordsButton').click(function () {
@@ -622,11 +615,8 @@
                         });
 
                     }
-
-
                 }
             })
-
         });
 
         $ ("#upload-profile").on ("submit", function (event) {
@@ -666,10 +656,7 @@
                         }).then(function() {
                             window.location.replace('Customer_Profile.jsp');
                         });
-
-
                     }
-
                 },
                 error :function (data ,textStatus,jqXHR){
                     console.log(" I have no idea an error happended")
@@ -716,10 +703,7 @@
                         }).then(function() {
                             window.location.replace('Seller_Login.jsp');
                         });
-
-
                     }
-
                 },
                 error :function (data ,textStatus,jqXHR){
                     console.log(" I have no idea an error happened")
@@ -728,7 +712,6 @@
                 contentType:false
             })
         })
-
     });
 
 </script>

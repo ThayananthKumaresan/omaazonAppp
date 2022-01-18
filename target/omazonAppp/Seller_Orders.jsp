@@ -1,6 +1,8 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="static com.example.omazonwebappp.DAOObjects.sessionSeller" %>
 <%@ page import="com.example.omazonwebappp.*" %>
+<%@ page import="static com.example.omazonwebappp.DAOObjects.ordersDAO" %>
+<%if(sessionSeller.getSellerID()==0){response.sendRedirect("index.jsp");}%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -55,9 +57,7 @@
 
         <%
             int count = 0;
-            OrdersDao ordersDAO = new OrdersDaoImp();
             ArrayList<Orders> listOfOrders = ordersDAO.getListOfOrdersOfSeller(sessionSeller.getSellerID());
-            CustomerDao customerDAO = new CustomerDaoImp();
 
             String rowcolour;
             if (listOfOrders != null) {

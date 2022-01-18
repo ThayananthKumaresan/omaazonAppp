@@ -1,5 +1,6 @@
 <%@ page import="static com.example.omazonwebappp.DAOObjects.*" %>
 <%@ page import="com.example.omazonwebappp.Seller" %>
+<%if(sessionSeller.getSellerID()==0){response.sendRedirect("index.jsp");}%>
 
 <!DOCTYPE html>
 <html lang="en">

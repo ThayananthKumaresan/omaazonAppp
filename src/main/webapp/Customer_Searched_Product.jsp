@@ -1,5 +1,6 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.omazonwebappp.Product" %>
+<%if(sessionCustomer.getCustomerID()==0){response.sendRedirect("index.jsp");}%>
 <%@ page import="static com.example.omazonwebappp.DAOObjects.productDAO" %>
 
 

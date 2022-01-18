@@ -34,6 +34,11 @@
 
 <section id="slider"><!--slider-->
     <div class="container">
+        <div class="breadcrumbs">
+            <ol class="breadcrumb">
+                <li class="active">Home</li>
+            </ol>
+        </div>
         <div class="row">
             <div class="col-sm-12">
                 <div id="slider-carousel" class="carousel slide" data-ride="carousel">

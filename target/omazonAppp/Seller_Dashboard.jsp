@@ -8,9 +8,10 @@
 <%@ page import="java.sql.PreparedStatement" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="java.util.Date" %>
+<%if(sessionSeller.getSellerID()==0){response.sendRedirect("index.jsp");}%>
 
 <%
-
+// following codes is to count the total count of feedbacks, products,orders and notifications
 
     int feedbackOfThisSeller = 0;
     int productsCountOfThisSeller = 0;
@@ -27,7 +28,6 @@
     Integer[] productSalesCount = null;
 
     if (productDAO.getListOfProductsOfThisSeller(sessionSeller.getSellerID()) != null) {
-
         listOfProductsOfThisSeller = productDAO.getListOfProductsOfThisSeller(sessionSeller.getSellerID());
         productsCountOfThisSeller = productDAO.getListOfProductsOfThisSeller(sessionSeller.getSellerID()).size();
         productNames = new String[productsCountOfThisSeller];
@@ -39,7 +39,6 @@
                 productSalesCount[i] = listOfProductsOfThisSeller.get(i).getProductSalesCount();
             }
         }
-
     }
 
     if (ordersDAO.getListOfOrdersOfSeller(sessionSeller.getSellerID()) != null) {
@@ -183,11 +182,7 @@
 
 
     <%
-
         if(sessionSeller.getSellerProfit()!= 0){
-
-
-
     %>
 
     <!-- Area Chart Sales-->
@@ -224,7 +219,7 @@
 
 
         <%
-
+// following code is to get sales each month
 double month1 =0;
 double month2=0;
 double month3=0;
@@ -413,8 +408,6 @@ String FIND_TRANSACTIONS_BY_YEAR = "SELECT YEAR(transactionDate) as SalesYear, "
     </script>
     <!--end of dropdown menu script-->
 <%
-
-
         }
 %>
 

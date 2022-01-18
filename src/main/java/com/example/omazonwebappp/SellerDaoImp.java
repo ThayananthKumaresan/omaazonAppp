@@ -78,7 +78,6 @@ public class SellerDaoImp implements SellerDao {
      */
     @Override
     public Seller getSellerBySellerCustomerID(int sellerCustomerID) {
-        System.out.println("getSellerBySellerCustomerID");
         ResultSet rs = null;
         Connection conn;
         PreparedStatement stmnt;

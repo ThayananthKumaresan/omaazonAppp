@@ -1,4 +1,3 @@
-<%if(sessionSeller.getSellerID()==0){response.sendRedirect("index.jsp");}%>
 <div id="main">
     <div class="header">
         <h1><span>O</span>-MAZON</h1>

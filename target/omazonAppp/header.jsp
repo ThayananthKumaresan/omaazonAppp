@@ -1,5 +1,4 @@
 <%@ page import="static com.example.omazonwebappp.DAOObjects.sessionCustomer" %>
-<%if(sessionCustomer.getCustomerID()==0){response.sendRedirect("index.jsp");}%>
 <header id="header"><!--header-->
     <div class="header_top"><!--header_top-->
         <div class="container">

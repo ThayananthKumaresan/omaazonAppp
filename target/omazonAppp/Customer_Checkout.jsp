@@ -1,4 +1,4 @@
-<%--
+<%@ page import="static com.example.omazonwebappp.DAOObjects.sessionCustomer" %><%--
   Created by IntelliJ IDEA.
   User: DELL
   Date: 1/10/2022
@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%if(sessionCustomer.getCustomerID()==0){response.sendRedirect("index.jsp");}%>
 
 <style>
     @import url(https://fonts.googleapis.com/css?family=Lato:400,300,700);
